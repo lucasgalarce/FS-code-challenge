@@ -4,7 +4,11 @@ import { Launch } from "../types/launch";
 import { Rocket } from "../types/rocket";
 
 export const processLaunches = async (userId, launches, rockets) => {
-  // const userFavorites = await getUserFavorites(userId);
+  const userFavorites = await getUserFavorites(userId);
+
+  const flightNumbersFavorities = userFavorites.map(
+    (favorite) => favorite.flight_number
+  );
 
   const results = launches.map((launch) => {
     const { flight_number, mission_name, details, links } = launch;
@@ -26,6 +30,9 @@ export const processLaunches = async (userId, launches, rockets) => {
         cost_per_launch,
         company,
       },
+      isFavorite: flightNumbersFavorities.includes(flight_number)
+        ? true
+        : false,
     };
     return newLaunch;
   });
