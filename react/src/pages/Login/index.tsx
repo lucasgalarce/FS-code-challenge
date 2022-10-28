@@ -1,9 +1,10 @@
 import "./index.scss";
+import { login } from "api/admin";
 
 export const Login = () => {
   const handleLogin = async () => {
-    // 2
-  };
+    await login()
+  }
 
   return (
     <div className="login-page">
