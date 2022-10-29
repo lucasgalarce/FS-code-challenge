@@ -4,7 +4,7 @@ import { Launch } from "types";
 import { LaunchCard, Search, Pagination, CARDS_PER_PAGE } from "components";
 import { getLaunches } from "../../api";
 import "./index.scss";
-import { AuthContext } from "contexts/AuthContext";
+import { useLocalStorage } from "hooks/useLocalStorage";
 
 export const LaunchesList = () => {
   const [launches, setLaunches] = useState<Launch[]>([]);
@@ -12,10 +12,11 @@ export const LaunchesList = () => {
   const [searchText, setSearchText] = useState<string>("");
   const { showAll } = useContext(ModeContext);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const { favorites, updateFavorite } = useLocalStorage()
   const filterLaunches = () => {
     setCurrentPage(1);
-    return setFilteredLaunches(
-      launches.filter((launch: Launch) => showAll || launch.favorite).filter((launch: Launch) => launch.mission_name.includes(searchText))
+    setFilteredLaunches(
+      launches.filter((launch: Launch) => showAll || favorites[launch.flight_number]).filter((launch: Launch) => launch.mission_name.includes(searchText))
     );
   };
 
@@ -32,7 +33,7 @@ export const LaunchesList = () => {
     loadLaunches();
   }, []);
 
-  useEffect(filterLaunches, [searchText, showAll, launches]);
+  useEffect(filterLaunches, [searchText, showAll, launches, favorites]);
 
   return (
     <div className="launches-list-container">
@@ -48,7 +49,8 @@ export const LaunchesList = () => {
             <LaunchCard
               key={launch.flight_number}
               launch={launch}
-              updateFavorite={() => {}}
+              updateFavorite={updateFavorite}
+              favorites={favorites}
             />
           ))}
       </div>

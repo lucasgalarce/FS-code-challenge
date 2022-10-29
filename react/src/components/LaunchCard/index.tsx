@@ -6,13 +6,16 @@ import "./index.scss";
 interface LaunchCardProps {
   launch: Launch;
   updateFavorite: Function;
+  favorites: Record<number, boolean>
 }
 
-export const LaunchCard = ({ launch, updateFavorite }: LaunchCardProps) => {
+export const LaunchCard = ({ launch, updateFavorite, favorites }: LaunchCardProps) => {
   const handleClickFavorite = async () => {
     await (launch.favorite
       ? removeFavorite(launch.flight_number)
       : addFavorite(launch.flight_number));
+
+    updateFavorite(launch.flight_number)
   };
 
   return (
@@ -29,7 +32,7 @@ export const LaunchCard = ({ launch, updateFavorite }: LaunchCardProps) => {
         </span>
         <Star
           onClick={handleClickFavorite}
-          className={launch.favorite ? "active" : ""}
+          className={favorites[launch.flight_number] ? "active" : ""}
         />
       </div>
     </div>
