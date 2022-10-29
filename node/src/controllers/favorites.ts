@@ -3,7 +3,7 @@ const { Favorites } = require("../entities/favorites");
 
 export const addFavorite = async (req, res) => {
   const user_id = req.user.userId;
-  const flight_number = req.body.flight_number;
+  const { flight_number } = req.params;
   const favoritesRepo = AppDataSource.getRepository(Favorites);
   const currentFav = await favoritesRepo.find({
     where: {
@@ -24,7 +24,7 @@ export const addFavorite = async (req, res) => {
 
 export const removeFavorite = async (req, res) => {
   const user_id = req.user.userId;
-  const flight_number = req.body.flight_number;
+  const { flight_number } = req.params;
   const favoritesRepo = AppDataSource.getRepository(Favorites);
   const result = await favoritesRepo.delete({
     flight_number,

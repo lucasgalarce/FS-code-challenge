@@ -1,4 +1,3 @@
-// import attachCurrentUser from '../middlewares/attachCurrentUser'
 import { auth } from "../middlewares/auth";
 
 import {
@@ -9,6 +8,6 @@ import {
 
 export default (router) => {
   router.get("/favorites", auth, getFavorites);
-  router.post("/favorites/add", auth, addFavorite);
-  router.delete("/favorites/delete", auth, removeFavorite);
+  router.post("/launches/:flight_number/favorite", auth, addFavorite);
+  router.delete("/launches/:flight_number/favorite", auth, removeFavorite);
 };
