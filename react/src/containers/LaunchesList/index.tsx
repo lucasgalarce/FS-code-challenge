@@ -4,6 +4,7 @@ import { Launch } from "types";
 import { LaunchCard, Search, Pagination, CARDS_PER_PAGE } from "components";
 import { getLaunches } from "../../api";
 import "./index.scss";
+import { AuthContext } from "contexts/AuthContext";
 
 export const LaunchesList = () => {
   const [launches, setLaunches] = useState<Launch[]>([]);
@@ -11,19 +12,17 @@ export const LaunchesList = () => {
   const [searchText, setSearchText] = useState<string>("");
   const { showAll } = useContext(ModeContext);
   const [currentPage, setCurrentPage] = useState<number>(1);
-
   const filterLaunches = () => {
     setCurrentPage(1);
-    // 3
     return setFilteredLaunches(
-      launches.filter((l: Launch) => showAll || l.favorite)
+      launches.filter((launch: Launch) => showAll || launch.favorite).filter((launch: Launch) => launch.mission_name.includes(searchText))
     );
   };
 
   const loadLaunches = async () => {
     try {
-      const launches = await getLaunches();
-      setLaunches(launches);
+        const launches = await getLaunches();
+        setLaunches(launches);
     } catch (error) {
       console.log(error);
     }

@@ -30,9 +30,7 @@ export const processLaunches = async (userId, launches, rockets) => {
         cost_per_launch,
         company,
       },
-      isFavorite: flightNumbersFavorities.includes(flight_number)
-        ? true
-        : false,
+      favorite: flightNumbersFavorities.includes(flight_number) ? true : false,
     };
     return newLaunch;
   });
