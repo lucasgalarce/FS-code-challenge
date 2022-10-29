@@ -7,5 +7,6 @@ export const login = async () => {
       userId: 1,
     }
   );
-  console.log(response);
+
+  return response.data.token;
 };

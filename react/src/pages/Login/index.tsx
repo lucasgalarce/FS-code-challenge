@@ -1,9 +1,15 @@
 import "./index.scss";
 import { login } from "api/admin";
+import { useContext } from "react";
+import { AuthContext } from './../../contexts/AuthContext';
 
 export const Login = () => {
-  const handleLogin = async () => {
-    await login()
+  const { setToken } = useContext(AuthContext)
+  const HandleLogin = async () => {
+    console.log("HandleLogin")
+    const token = await login()
+    console.log(token)
+    setToken(token)
   }
 
   return (
@@ -13,7 +19,7 @@ export const Login = () => {
         alt="DEPT®"
         title="DEPT®"
       />
-      <button onClick={handleLogin} className="glow-on-hover">
+      <button onClick={HandleLogin} className="glow-on-hover">
         LOG IN
       </button>
     </div>
