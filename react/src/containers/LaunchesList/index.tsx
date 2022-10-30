@@ -37,6 +37,7 @@ export const LaunchesList = () => {
 
   return (
     <div className="launches-list-container">
+      <div className="total">Total ({filteredLaunches.length})</div>
       <Search value={searchText} onChange={setSearchText} />
       <div className="launches-list">
         {filteredLaunches

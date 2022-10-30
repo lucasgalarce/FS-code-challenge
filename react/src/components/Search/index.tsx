@@ -18,6 +18,7 @@ export const Search = ({ value, onChange }: SeachProps) => {
       <img className="search-icon" src={searchIcon} alt="Search" />
       <input
         type="text"
+        placeholder="Search all launches"
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />
