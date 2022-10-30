@@ -6,9 +6,7 @@ import { AuthContext } from './../../contexts/AuthContext';
 export const Login = () => {
   const { setToken } = useContext(AuthContext)
   const HandleLogin = async () => {
-    console.log("HandleLogin")
     const token = await login()
-    console.log(token)
     setToken(token)
   }
 
