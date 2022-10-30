@@ -6,5 +6,6 @@ export type Launch = {
   details: string;
   mission_patch: string;
   rocket: Rocket;
+  launch_date_unix: number;
   favorite: boolean;
 };

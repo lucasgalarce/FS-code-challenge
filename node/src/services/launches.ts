@@ -11,7 +11,7 @@ export const processLaunches = async (userId, launches, rockets) => {
   );
 
   const results = launches.map((launch) => {
-    const { flight_number, mission_name, details, links } = launch;
+    const { flight_number, mission_name, details, links, launch_date_unix } = launch;
 
     const rocket: Rocket = rockets.find(
       (rocket) => rocket.rocket_id === launch.rocket.rocket_id
@@ -30,6 +30,7 @@ export const processLaunches = async (userId, launches, rockets) => {
         cost_per_launch,
         company,
       },
+      launch_date_unix,
       favorite: flightNumbersFavorities.includes(flight_number) ? true : false,
     };
     return newLaunch;
