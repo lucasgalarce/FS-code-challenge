@@ -3,18 +3,19 @@
 
   .launches-list {
     display: grid;
-    padding-top: 50px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 413px));
-    justify-content: center;
-    column-gap: 37px;
-    row-gap: 37px;
+    padding-top: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 37px;
   }
 
   .pagination {
     margin-top: 20px;
   }
-  .total {
-    float: left;
-    font-size: 20px;
+  .launches-list-header {
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
   }
 }

@@ -9,10 +9,6 @@ interface SeachProps {
 }
 
 export const Search = ({ value, onChange }: SeachProps) => {
-  const clear = () => {
-    onChange("");
-  };
-
   return (
     <div className="search-input">
       <img className="search-icon" src={searchIcon} alt="Search" />
@@ -22,7 +18,6 @@ export const Search = ({ value, onChange }: SeachProps) => {
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />
-      <img className="close-icon" src={closeIcon} onClick={clear} alt="Close" />
     </div>
   );
 };

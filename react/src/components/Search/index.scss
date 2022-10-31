@@ -1,3 +1,22 @@
 .search-input {
-    float: right;
+    width: 250px;
+    position: relative;
+    display: flex;
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 5px;
+    gap: 0 5px;
+    > input {
+        border: none;
+        background: transparent;
+        font-size: 15px;
+        width: 100%;
+        outline: none;
+        color: white;
+    }
+}
+
+.search-icon {
+    position: relative;
+    padding-left: 5px;
 }
