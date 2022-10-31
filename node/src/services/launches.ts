@@ -11,7 +11,8 @@ export const processLaunches = async (userId, launches, rockets) => {
   );
 
   const results = launches.map((launch) => {
-    const { flight_number, mission_name, details, links, launch_date_unix } = launch;
+    const { flight_number, mission_name, details, links, launch_date_unix } =
+      launch;
 
     const rocket: Rocket = rockets.find(
       (rocket) => rocket.rocket_id === launch.rocket.rocket_id
@@ -22,7 +23,7 @@ export const processLaunches = async (userId, launches, rockets) => {
       flight_number,
       mission_name,
       mission_patch: links.mission_patch,
-      details: details,
+      details,
       rocket: {
         rocket_id,
         rocket_name,
