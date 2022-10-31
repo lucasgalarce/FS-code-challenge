@@ -14,7 +14,6 @@ export const LaunchesList = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { favorites, updateFavorite } = useLocalStorage()
   const filterLaunches = () => {
-    setCurrentPage(1);
     setFilteredLaunches(
       launches.filter((launch: Launch) => showAll || favorites[launch.flight_number]).filter((launch: Launch) => launch.mission_name.includes(searchText))
     );
@@ -34,11 +33,14 @@ export const LaunchesList = () => {
   }, []);
 
   useEffect(filterLaunches, [searchText, showAll, launches, favorites]);
+  useEffect(() => {setCurrentPage(1)}, [showAll, searchText])
 
   return (
     <div className="launches-list-container">
-      <div className="total">Total ({filteredLaunches.length})</div>
-      <Search value={searchText} onChange={setSearchText} />
+      <div className="launches-list-header">
+        <span>Total ({filteredLaunches.length})</span>
+        <Search value={searchText} onChange={setSearchText} />
+      </div>
       <div className="launches-list">
         {filteredLaunches
           .filter(
